@@ -14,6 +14,6 @@ workflows:
           npm install
       - name: Build Android APK
         script: |
-          npx expo run:android --variant release --no-dev
+          npx expo run:android --variant release
     artifacts:
       - android/app/build/outputs/apk/release/*.apk
