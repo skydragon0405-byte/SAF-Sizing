@@ -1,0 +1,42 @@
+name: Generate Android APK
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Project Dependencies
+        run: npm install
+
+      - name: Setup Java Native Compiler
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Setup Android SDK Build Framework
+        uses: android-actions/setup-android@v2
+
+      - name: Trigger Automatic Expo Prebuild Wrapper
+        run: npx expo prebuild --platform android
+
+      - name: Compile Standalone Release APK
+        run: |
+          cd android
+          ./gradlew assembleRelease
+
+      - name: Export Completed Installable APK File
+        uses: actions/upload-artifact@v3
+        with:
+          name: saf-parade-sizer-app
+          path: android/app/build/outputs/apk/release/app-release.unsigned.apk
