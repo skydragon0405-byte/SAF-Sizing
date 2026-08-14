@@ -12,6 +12,11 @@
       "android": {
         "buildType": "apk"
       }
+    },
+    "internal": {
+      "android": {
+        "buildType": "apk"
+      }
     }
   }
 }
