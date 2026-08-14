@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -19,13 +19,13 @@ jobs:
         run: npm install
 
       - name: Setup Java Native Compiler
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17'
 
       - name: Setup Android SDK Build Framework
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
 
       - name: Trigger Automatic Expo Prebuild Wrapper
         run: npx expo prebuild --platform android
@@ -36,7 +36,7 @@ jobs:
           ./gradlew assembleRelease
 
       - name: Export Completed Installable APK File
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: saf-parade-sizer-app
           path: android/app/build/outputs/apk/release/app-release.unsigned.apk
