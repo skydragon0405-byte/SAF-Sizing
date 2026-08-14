@@ -1,5 +1,5 @@
 name: saf_parade_sizer
-description: A new Flutter project.
+description: RSAF Parade Contingent Sizing Application
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -20,3 +20,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
